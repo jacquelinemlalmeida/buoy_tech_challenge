@@ -81,5 +81,25 @@ RSpec.describe 'API V1 - Accommodations', type: :request do
         run_test!
       end
     end
+
+    path '/api/v1/accommodations/{id}/next_available_date' do
+      get 'Get next available date for an accommodation' do
+        tags 'Accommodations'
+        produces 'application/json'
+        parameter name: :id, in: :path, type: :string
+        parameter name: :date, in: :query, type: :string, format: :date, required: false, description: 'Start date to search from'
+
+        response '200', 'next available date returned' do
+          let(:id) { Accommodation.create!(name: 'Flat 4', price: 400.00, location: 'Vista', type: 'Apartment').id }
+          let(:date) { (Date.today + 1).to_s }
+          run_test!
+        end
+
+        response '404', 'accommodation not found' do
+          let(:id) { 'invalid' }
+          run_test!
+        end
+      end
+    end
   end
 end

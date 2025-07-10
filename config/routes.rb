@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :accommodations do
         resources :bookings, only: [:index, :create]
+        get 'next_available_date', on: :member
       end
       resources :bookings, only: [:show, :update, :destroy]
       get '/bookings', to: 'bookings#list'

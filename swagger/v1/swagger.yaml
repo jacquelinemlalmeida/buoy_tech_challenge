@@ -99,6 +99,29 @@ paths:
       responses:
         "204":
           description: accommodation deleted
+  "/api/v1/accommodations/{id}/next_available_date":
+    get:
+      summary: Get next available date for an accommodation
+      tags:
+        - Accommodations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          format: date
+          required: false
+          description: Start date to search from
+          schema:
+            type: string
+      responses:
+        "200":
+          description: next available date returned
+        "404":
+          description: accommodation not found
   "/api/v1/accommodations/{accommodation_id}/bookings":
     get:
       summary: List bookings for a specific accommodation

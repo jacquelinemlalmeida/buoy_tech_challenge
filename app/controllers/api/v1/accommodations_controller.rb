@@ -34,6 +34,18 @@ module Api
         head :no_content
       end
 
+      def next_available_date
+        accommodation = Accommodation.find_by(id: params[:id])
+        return render json: { }, status: :not_found unless accommodation
+
+        from_date = params[:date].present? ? Date.parse(params[:date]) : Date.today
+        next_date = accommodation.next_available_date(from_date)
+
+        render json: { next_available_date: next_date }, status: :ok
+      rescue ArgumentError
+        render json: { error: 'Invalid date format' }, status: :bad_request
+      end
+
       private
 
       def set_accommodation
