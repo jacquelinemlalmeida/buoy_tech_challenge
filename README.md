@@ -13,3 +13,6 @@ To play with this I suggest postman.
 Tests
 
 I created automated tests using rspec, please to execute this run "bundle exec rspec".
+
+Swagger
+Implemented Swagger and Documentation
