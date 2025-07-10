@@ -8,17 +8,17 @@ paths:
     get:
       summary: List all accommodations
       tags:
-      - Accommodations
+        - Accommodations
       responses:
-        '200':
+        "200":
           description: accommodations listed
     post:
       summary: Create a new accommodation
       tags:
-      - Accommodations
+        - Accommodations
       parameters: []
       responses:
-        '201':
+        "201":
           description: accommodation created
       requestBody:
         content:
@@ -37,52 +37,94 @@ paths:
                 type:
                   type: string
               required:
-              - name
-              - price
-              - location
-              - type
+                - name
+                - price
+                - location
+                - type
   "/api/v1/accommodations/{id}":
     get:
       summary: Get a specific accommodation
       tags:
-      - Accommodations
+        - Accommodations
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: accommodation found
-        '404':
+        "404":
           description: accommodation not found
+    patch:
+      summary: Update an accommodation
+      tags:
+        - Accommodations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: accommodation updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                location:
+                  type: string
+                type:
+                  type: string
+    delete:
+      summary: Delete an accommodation
+      tags:
+        - Accommodations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: accommodation deleted
   "/api/v1/accommodations/{accommodation_id}/bookings":
     get:
       summary: List bookings for a specific accommodation
       tags:
-      - Bookings
+        - Bookings
       parameters:
-      - name: accommodation_id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: accommodation_id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: bookings listed
     post:
       summary: Create booking for an accommodation
       tags:
-      - Bookings
+        - Bookings
       parameters:
-      - name: accommodation_id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: accommodation_id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '201':
+        "201":
           description: booking created
       requestBody:
         content:
@@ -99,37 +141,45 @@ paths:
                   type: string
                   format: date
               required:
-              - guest_name
-              - start_date
-              - end_date
+                - guest_name
+                - start_date
+                - end_date
+  "/api/v1/bookings":
+    get:
+      summary: List all bookings
+      tags:
+        - Bookings
+      responses:
+        "200":
+          description: bookings listed
   "/api/v1/bookings/{id}":
     get:
       summary: Get a booking by ID
       tags:
-      - Bookings
+        - Bookings
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: booking found
-        '404':
+        "404":
           description: booking not found
     patch:
       summary: Update a booking
       tags:
-      - Bookings
+        - Bookings
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: booking updated
       requestBody:
         content:
@@ -148,18 +198,18 @@ paths:
     delete:
       summary: Delete a booking
       tags:
-      - Bookings
+        - Bookings
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '204':
+        "204":
           description: booking deleted
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+  - url: http://localhost:3000
+    variables:
+      defaultHost:
+        default: http://localhost:3000

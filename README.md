@@ -15,4 +15,4 @@ Tests
 I created automated tests using rspec, please to execute this run "bundle exec rspec".
 
 Swagger
-Implemented Swagger and Documentation
+Implemented Swagger and Documentation use API in: http://localhost:3000/api-docs/index.html after server up.

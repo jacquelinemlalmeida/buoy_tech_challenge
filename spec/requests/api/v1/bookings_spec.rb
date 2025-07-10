@@ -8,7 +8,7 @@ RSpec.describe 'API V1 - Bookings', type: :request do
       parameter name: :accommodation_id, in: :path, type: :string
 
       response '200', 'bookings listed' do
-        let(:accommodation_id) { Accommodation.create!(name: 'Flat 3', price: 150, location: 'downtown', type: 'Apartment').id }
+        let(:accommodation_id) { Accommodation.create!(name: 'Flat 3', price: 150.00, location: 'Gate', type: 'Apartment').id }
         run_test!
       end
     end
@@ -28,8 +28,27 @@ RSpec.describe 'API V1 - Bookings', type: :request do
       }
 
       response '201', 'booking created' do
-        let(:accommodation_id) { Accommodation.create!(name: 'Hotel Booking', price: 500, location: 'montain', type: 'Hotel').id }
-        let(:booking) { { guest_name: 'Anna', start_date: Date.today.to_s, end_date: (Date.today + 2).to_s } }
+        let(:accommodation_id) { Accommodation.create!(name: 'Hotel Booking', price: 500.00, location: 'Miami', type: 'Hotel').id }
+        let(:booking) do
+          {
+            guest_name: 'Ana',
+            start_date: Date.today.to_s,
+            end_date: (Date.today + 2).to_s,
+            accommodation_id: accommodation_id
+          }
+        end
+
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/bookings' do
+    get 'List all bookings' do
+      tags 'Bookings'
+      produces 'application/json'
+
+      response '200', 'bookings listed' do
         run_test!
       end
     end
@@ -42,7 +61,7 @@ RSpec.describe 'API V1 - Bookings', type: :request do
       parameter name: :id, in: :path, type: :string
 
       response '200', 'booking found' do
-        let(:accommodation) { Accommodation.create!(name: 'Unit Test Apt', price: 100, location: 'Rua A', type: 'Apartment') }
+        let(:accommodation) { Accommodation.create!(name: 'Unit Test Apt', price: 100.00, location: 'Street A', type: 'Apartment') }
         let(:id) { Booking.create!(accommodation: accommodation, guest_name: 'Carl', start_date: Date.today, end_date: Date.today + 1).id }
         run_test!
       end
@@ -67,7 +86,7 @@ RSpec.describe 'API V1 - Bookings', type: :request do
       }
 
       response '200', 'booking updated' do
-        let(:accommodation) { Accommodation.create!(name: 'Test', price: 300, location: 'Centro', type: 'Apartment') }
+        let(:accommodation) { Accommodation.create!(name: 'Test', price: 300.00, location: 'downtown', type: 'Apartment') }
         let(:id) { Booking.create!(accommodation: accommodation, guest_name: 'John', start_date: Date.today, end_date: Date.today + 1).id }
         let(:booking) { { guest_name: 'John Smith' } }
         run_test!
