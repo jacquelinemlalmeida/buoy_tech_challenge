@@ -42,6 +42,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
   gem "rspec-rails"
   gem 'dotenv-rails'
+  gem 'rswag-ui'
+  gem 'rswag-api'
+  gem 'rswag-specs'
+  gem 'yajl-ruby'
 end
 
 group :development do

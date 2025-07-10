@@ -6,6 +6,11 @@ class Api::V1::BookingsController < ApplicationController
     render json: bookings
   end
 
+  def list
+    bookings = Booking.all
+    render json: bookings
+  end
+
   def create
     booking = Booking.new(booking_params)
     if booking.save

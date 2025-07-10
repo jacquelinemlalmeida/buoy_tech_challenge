@@ -7,6 +7,10 @@ development:
   <<: *default
   database: bookings_app_development
 
+test:
+  <<: *default
+  database: bookings_app_test
+
 production:
   <<: *default
   database: bookings_app_production

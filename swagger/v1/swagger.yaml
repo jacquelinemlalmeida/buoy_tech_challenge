@@ -1,0 +1,81 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/accommodations":
+    get:
+      summary: List all accommodations
+      tags:
+      - Accommodations
+      responses:
+        '200':
+          description: accommodations listed
+    post:
+      summary: Create a new accommodation
+      tags:
+      - Accommodations
+      parameters: []
+      responses:
+        '201':
+          description: accommodation created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                location:
+                  type: string
+                type:
+                  type: string
+              required:
+              - name
+              - price
+              - location
+              - type
+  "/api/v1/accommodations/{id}":
+    get:
+      summary: Get a specific accommodation
+      tags:
+      - Accommodations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: accommodation found
+        '404':
+          description: accommodation not found
+  "/api/v1/bookings/{id}":
+    get:
+      summary: Retrieves a booking
+      tags:
+      - Bookings
+      parameters:
+      - name: id
+        in: path
+        description: hotel 1
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: booking found
+        '404':
+          description: booking not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
