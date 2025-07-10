@@ -99,6 +99,12 @@ RSpec.describe 'API V1 - Accommodations', type: :request do
           let(:id) { 'invalid' }
           run_test!
         end
+
+        response '400', 'bad request' do
+          let(:id) { Accommodation.create!(name: 'Flat 4', price: 400.00, location: 'Vista', type: 'Apartment').id }
+          let(:date) { (Date.today - 10.days).to_s }
+          run_test!
+        end
       end
     end
   end

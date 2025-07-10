@@ -39,6 +39,9 @@ module Api
         return render json: { }, status: :not_found unless accommodation
 
         from_date = params[:date].present? ? Date.parse(params[:date]) : Date.today
+        if from_date < Date.today
+          return render json: { error: 'Date must be today or in the future' }, status: :bad_request
+        end
         next_date = accommodation.next_available_date(from_date)
 
         render json: { next_available_date: next_date }, status: :ok
