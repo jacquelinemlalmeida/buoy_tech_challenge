@@ -4,7 +4,7 @@ puts "Seeding data..."
   Hotel.create!(
     name: "Hotel #{i + 1}",
     description: "Hotel número #{i + 1} com ótima localização",
-    price: 150 + i * 20,
+    price: 150.00 + i * 20,
     location: "Região #{i + 1}"
   )
 end
@@ -13,7 +13,7 @@ end
   Apartment.create!(
     name: "Apartamento #{i + 1}",
     description: "Apartamento confortável #{i + 1}",
-    price: 250 + i * 30,
+    price: 250.00 + i * 30,
     location: "Bairro #{i + 1}"
   )
 end

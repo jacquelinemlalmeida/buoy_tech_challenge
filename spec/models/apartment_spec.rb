@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Apartment, type: :model do
   describe '#next_available_date' do
-    let(:apartment) { Apartment.create!(name: 'Apto Teste', price: 300, location: 'Centro') }
+    let(:apartment) { Apartment.create!(name: 'Apto Teste', price: 300.90, location: 'Centro') }
 
     before do
       Booking.create!(

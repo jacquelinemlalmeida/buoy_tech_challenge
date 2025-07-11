@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Booking, type: :model do
   describe 'validations' do
-    let(:apartment) { Apartment.create!(name: "Apto 1", price: 200, location: "Centro") }
-    let(:hotel)     { Hotel.create!(name: "Hotel 1", price: 300, location: "Orla") }
+    let(:apartment) { Apartment.create!(name: "Apto 1", price: 200.00, location: "Centro") }
+    let(:hotel)     { Hotel.create!(name: "Hotel 1", price: 300.00, location: "Orla") }
 
     it 'does not allow overlapping bookings for apartments' do
       Booking.create!(accommodation: apartment, start_date: Date.today, end_date: Date.today + 2, guest_name: "Alice")

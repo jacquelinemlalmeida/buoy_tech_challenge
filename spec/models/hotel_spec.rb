@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Hotel, type: :model do
   describe '#next_available_date' do
-    let(:hotel) { Hotel.create!(name: 'Hotel Teste', price: 400, location: 'Praia') }
+    let(:hotel) { Hotel.create!(name: 'Hotel Teste', price: 400.90, location: 'Praia') }
 
     it 'returns the same date given, even if bookings exist' do
       Booking.create!(
